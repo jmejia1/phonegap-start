@@ -21,34 +21,37 @@
 		
 		<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
 		
+		<script src="assets/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		
 	</head>
 	<body>
- 		<div id="title_bar">Phone<strong>Gap</strong> Training App</div>
+ 		<div id="title_bar"><strong>Jonathan</strong> Inicia</div>
 
 		<div id="welcome" class="view">
-		  <div class="app_button" id="map_button">Show My Location</div>
-  	      <div class="app_button" id="settings_button">Settings</div>
+		  <div class="app_button" id="map_button">Ver mi ubicación</div>
+  	      <div class="app_button" id="settings_button">Configuración</div>
+		  <div class="app_button" id="info_button">Info</div>
 		</div>
 
 		<div id="map" class="view">
 		  <div class="map_image">
               <img id="static_map" src="assets/img/staticmap.png">
 		  </div>
-		  <p>This is where you are</p>
-		  <div class="app_button" id="welcome_button">Go Back</div>
+		  <p>Estás aquí!</p>
+		  <div class="app_button" id="welcome_button">Volver</div>
 		</div>
 
 		<div id="settings" class="view">
 		  <form id="settings_form">
 		    <fieldset>
-		      <legend>Map Type</legend>
+		      <legend>Tipo de Mapa</legend>
 			  <input type="radio" name="map" value="roadmap" checked>Road Map<br/>
 		      <input type="radio" name="map" value="satellite">Satellite<br/>
 		      <input type="radio" name="map" value="terrain">Terrain<br/>
 		      <input type="radio" name="map" value="hybrid">Hybrid<br/>
 		    </fieldset>
 		    <fieldset>
-		      <legend>Zoom Level</legend>
+		      <legend>Zoom</legend>
   		      <input type="radio" name="zoom" value="10">Super Far<br/>
   		      <input type="radio" name="zoom" value="12">Far<br/>
   		      <input type="radio" name="zoom" value="15" checked>Normal<br/>
@@ -59,5 +62,42 @@
 	      </form>
 		</div>
 
+		<div id="info" class="view">
+		  <div class="info_form">
+                <script type="text/javascript">
+					$(document).ready(function()
+					{
+						$.get('http://www.thomas-bayer.com/sqlrest/CUSTOMER/2000', function(d)
+						{
+							//$('body').append('<h4> Probando Conexión REST-XML</h4>');
+							//$('body').append('<dl />');
+
+							$(d).find('CUSTOMER').each(function()
+							{
+								var $book = $(this); 
+								var FIRSTNAME = $book.find('FIRSTNAME').text();
+								var LASTNAME = $book.find('LASTNAME').text();
+								//var imageurl = $book.attr('imageurl');
+
+								//var html = '<dt> <img class="bookImage" alt="" src="' + imageurl + '" /> </dt>';
+								//html += '<dd> <span class="loadingPic" alt="Loading" />';
+								//html += '<p class="title">' + title + '</p>';
+								//html += '<p> ' + description + '</p>' ;
+								//html += '</dd>';
+								var html = '<h4>' + FIRSTNAME + '</h4>';
+								html += '<p>' + LASTNAME + '</p>';  
+								
+								$('info_data').append($(html));
+								
+								//$('.loadingPic').fadeOut(1400);
+							});
+						});
+					});
+				</script>
+				<div id="info_data"></div>
+		  </div>
+		  <div class="app_button" id="welcome_button">Go Back</div>
+		</div>		
+		
 	</body>
 </html>
