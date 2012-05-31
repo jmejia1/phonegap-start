@@ -45,7 +45,35 @@ run(function () {
             });
         });
     });
-    when('#info');
+    when('#info', function(document) {
+		//$(document).ready(function() {
+			$.get('http://www.thomas-bayer.com/sqlrest/CUSTOMER/2000', function(d)
+			{
+				//$('body').append('<h4> Probando Conexión REST-XML</h4>');
+				//$('body').append('<dl />');
+
+				$(d).find('CUSTOMER').each(function()
+				{
+					var $book = $(this); 
+					var FIRSTNAME = $book.find('FIRSTNAME').text();
+					var LASTNAME = $book.find('LASTNAME').text();
+					//var imageurl = $book.attr('imageurl');
+
+					//var html = '<dt> <img class="bookImage" alt="" src="' + imageurl + '" /> </dt>';
+					//html += '<dd> <span class="loadingPic" alt="Loading" />';
+					//html += '<p class="title">' + title + '</p>';
+					//html += '<p> ' + description + '</p>' ;
+					//html += '</dd>';
+					var html = '<h4>' + FIRSTNAME + '</h4>';
+					html += '<p>' + LASTNAME + '</p>';  
+					
+					$('info_data').append($(html));
+					
+					//$('.loadingPic').fadeOut(1400);
+				});
+			});
+		//});
+	});
     when('#save', function () {
         store.save({
             key:'config',
