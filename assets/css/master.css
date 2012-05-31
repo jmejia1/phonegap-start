@@ -60,7 +60,6 @@ body {
   display: block;  
 }
 
-
 #map { 
   text-shadow: 0 1px 0 #fff;
 }
@@ -78,9 +77,6 @@ body {
 #settings {
 }
 
-#info {
-}
-
   legend {
     font-weight: bold;
     text-shadow: 0 1px 0 #fff;
@@ -95,3 +91,6 @@ body {
   input {
     margin-bottom: 8px;
   }
+  
+#info {
+}

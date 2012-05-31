@@ -45,6 +45,7 @@ run(function () {
             });
         });
     });
+    when('#info');
     when('#save', function () {
         store.save({
             key:'config',
@@ -53,7 +54,5 @@ run(function () {
         });
         display('#welcome');
     });
-    when('#info', function () {
-        display('#welcome');
-    });	
+
 });
