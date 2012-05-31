@@ -53,4 +53,7 @@ run(function () {
         });
         display('#welcome');
     });
+    when('#info', function () {
+        display('#welcome');
+    });	
 });
